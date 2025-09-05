@@ -1,7 +1,5 @@
 package br.com.git.clicker_game.view;
 
-import javax.swing.JOptionPane;
-
 import br.com.git.clicker_game.model.Inventory;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -33,7 +31,6 @@ public class Menu extends Application {
         hatButton.setStyle("-fx-font-size: 16px;");
         hatButton.setOnAction(e -> {
             inventory.buyHat();
-            JOptionPane.showMessageDialog(null, "Now, the peoples can spare change for you!");
         });
 
         // End of buttons

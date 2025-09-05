@@ -20,10 +20,12 @@ public class Interface extends Application {
     public void start(Stage stage) throws Exception {
 
         // Labels
+        
         Label label = new Label("Clicker Game!");
         label.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-weight: bold;");
-
-        Label moneyLabel = new Label("Money: " + count.getCount());
+        
+        Label moneyLabel = new Label();
+        moneyLabel.textProperty().bind(count.countProperty().asString("Money: %d"));
         moneyLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #666;");
 
         // End of labels
@@ -35,7 +37,6 @@ public class Interface extends Application {
         farmButton.setOnAction(e -> {
             try {
                 count.increment();
-                moneyLabel.setText("Money: " + count.getCount());
             } catch (Exception error) {
                 error.printStackTrace();
             }
