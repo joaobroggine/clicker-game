@@ -44,22 +44,21 @@
       <scope>test</scope>
     </dependency>
 
-	<dependency>
-		<groupId>org.openjfx</groupId>
-		<artifactId>javafx-controls</artifactId>
-		<version>21.0.1</version>
-	</dependency>
+  <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>21.0.2</version>
+  </dependency>
 
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>21.0.2</version>
-    </dependency>
+  <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>21.0.2</version>
+  </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Compiler plugin configurado para Java 21 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -76,8 +75,6 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
-
-      <!-- Spring Boot plugin -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -90,8 +87,6 @@
           </excludes>
         </configuration>
       </plugin>
-
-      <!-- OpenJFX plugin para rodar facilmente durante o desenvolvimento -->
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
@@ -99,8 +94,8 @@
         <configuration>
           <mainClass>br.com.git.clicker_game.ClickerGameApplication</mainClass>
           <modulePathDependencies>
-            <modulePathDependency>org.openjfx:javafx-controls:21.0.2:linux-x64</modulePathDependency>
-            <modulePathDependency>org.openjfx:javafx-fxml:21.0.2:linux-x64</modulePathDependency>
+            <modulePathDependency>org.openjfx:javafx-controls</modulePathDependency>
+            <modulePathDependency>org.openjfx:javafx-fxml</modulePathDependency>
           </modulePathDependencies>
         </configuration>
       </plugin>

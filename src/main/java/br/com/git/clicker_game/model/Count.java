@@ -9,10 +9,13 @@ public class Count {
 
     public void increment() {
         count++;
+        System.out.println("Count incremented: " + count);
     }
 
     public void decrement() {
         count--;
     }
+
+
 
 }
