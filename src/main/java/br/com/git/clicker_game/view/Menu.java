@@ -27,16 +27,22 @@ public class Menu extends Application {
 
         // Buttons
 
-        Button hatButton = new Button("Buy a Hat - 10 Money");
-        hatButton.setStyle("-fx-font-size: 16px;");
+        Button hatButton = new Button("Buy a Hat - 10 Bucks");
+        hatButton.setStyle("-fx-font-size: 13px;");
         hatButton.setOnAction(e -> {
             inventory.buyHat();
+        });
+
+        Button guitarButton = new Button("Buy a Guitar - 150 Bucks");
+        guitarButton.setStyle("-fx-font-size: 13px;");
+        guitarButton.setOnAction(e -> {
+            inventory.buyGuitar();
         });
 
         // End of buttons
 
         VBox box = new VBox(10);
-        box.getChildren().addAll(label, hatButton);
+        box.getChildren().addAll(label, hatButton, guitarButton);
 
         Scene scene = new Scene(box, 400, 300);
 

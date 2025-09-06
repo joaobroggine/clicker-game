@@ -20,8 +20,8 @@ public class Interface extends Application {
     public void start(Stage stage) throws Exception {
 
         // Labels
-        
-        Label label = new Label("Clicker Game!");
+
+        Label label = new Label("Job Clicker");
         label.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-weight: bold;");
         
         Label moneyLabel = new Label();
@@ -68,7 +68,7 @@ public class Interface extends Application {
         stage.setResizable(false);
         stage.setFullScreen(false);
         stage.setMaximized(false);
-        stage.setTitle("Clicker Game");
+        stage.setTitle("Job Clicker");
         stage.setScene(scene);
         stage.show();
     }
