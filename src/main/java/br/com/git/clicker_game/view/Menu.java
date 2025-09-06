@@ -5,7 +5,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class Menu extends Application {
 
@@ -15,6 +16,7 @@ public class Menu extends Application {
         this.inventory = inventory;
     }
 
+    @SuppressWarnings("static-access")
     @Override
     public void start(javafx.stage.Stage stage) throws Exception {
         
@@ -24,6 +26,14 @@ public class Menu extends Application {
         label.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-weight: bold;");
 
         // End of labels
+
+        // Grid
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        
+        // End of grid
 
         // Buttons
 
@@ -39,12 +49,28 @@ public class Menu extends Application {
             inventory.buyGuitar();
         });
 
+        Button houseButton = new Button("Buy a House - 1000 Bucks");
+        houseButton.setStyle("-fx-font-size: 13px;");
+        houseButton.setOnAction(e -> {
+            inventory.buyHouse();
+        });
+
         // End of buttons
 
-        VBox box = new VBox(10);
-        box.getChildren().addAll(label, hatButton, guitarButton);
+        // Adding buttons to the grid
 
-        Scene scene = new Scene(box, 400, 300);
+        grid.add(hatButton, 0, 0);
+        grid.add(guitarButton, 0, 1);
+        grid.add(houseButton, 0, 2);
+
+        // End of adding buttons to the grid
+
+        BorderPane root = new BorderPane();
+        root.setTop(label);
+        root.setAlignment(label, javafx.geometry.Pos.CENTER);
+        root.setCenter(grid);
+
+        Scene scene = new Scene(root, 400, 300);
 
         stage.setResizable(false);
         stage.setFullScreen(false);

@@ -7,6 +7,7 @@ public class Inventory {
     
     private int hat = 0;
     private int guitar = 0;
+    private int house = 0;
     private Count count;
     private boolean incomeHatThreadStarted = false;
     private boolean incomeGuitarThreadStarted = false;
@@ -93,6 +94,25 @@ public class Inventory {
                 }
             }
         }).start();
+    }
+
+    // House
+
+    public void buyHouse() {
+        int housePrice = 1000;
+
+        if (house > 0) {
+            DialogUtils.showWarning("Warning", "You already have a house!");
+            return;
+        } else {
+            if (count.getCount() >= housePrice) {
+                house++;
+                DialogUtils.showInfo("Congratulations", "Congratulations, your house doesn’t make money by itself, but it opens the door to new opportunities!");
+                count.setCount(count.getCount() - housePrice);
+            } else {
+                DialogUtils.showWarning("Warning", "You don't have enough money to buy a house!");
+            }
+        }
     }
 
 }
