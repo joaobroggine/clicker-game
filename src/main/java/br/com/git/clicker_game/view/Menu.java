@@ -49,10 +49,21 @@ public class Menu extends Application {
             inventory.buyGuitar();
         });
 
+        Button pcButton = new Button("Buy a PC - 5000 Bucks");
+        pcButton.setStyle("-fx-font-size: 13px;");
+        pcButton.setVisible(false);
+        pcButton.setOnAction(e -> {
+            inventory.buyPc();
+        });
+
         Button houseButton = new Button("Buy a House - 1000 Bucks");
         houseButton.setStyle("-fx-font-size: 13px;");
         houseButton.setOnAction(e -> {
             inventory.buyHouse();
+
+            if (inventory.hasHouse()) {
+                pcButton.setVisible(true);
+            }
         });
 
         // End of buttons
@@ -62,6 +73,7 @@ public class Menu extends Application {
         grid.add(hatButton, 0, 0);
         grid.add(guitarButton, 0, 1);
         grid.add(houseButton, 0, 2);
+        grid.add(pcButton, 0, 3);
 
         // End of adding buttons to the grid
 
