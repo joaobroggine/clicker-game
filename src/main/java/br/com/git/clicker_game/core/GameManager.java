@@ -19,8 +19,6 @@ public class GameManager {
         mainStage.setScene(scene);
         mainStage.setFullScreen(true);
 
-        SoundManager.playSfx("/assets/sounds/sfx/wind.wav");
-
     }
 
     public static void setShopScreen(Stage stage) {

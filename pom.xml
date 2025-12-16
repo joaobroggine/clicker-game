@@ -18,16 +18,9 @@
   <description>Spring Boot + JavaFX application</description>
 
   <dependencies>
-    <!-- Spring Boot -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.tinylog</groupId>
-          <artifactId>tinysound</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
