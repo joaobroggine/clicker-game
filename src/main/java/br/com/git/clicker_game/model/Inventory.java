@@ -166,4 +166,8 @@ public class Inventory {
         }).start();
     }
 
+    public boolean hasPc() {
+        return pc > 0;
+    }
+
 }

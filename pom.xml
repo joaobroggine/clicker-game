@@ -22,6 +22,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.tinylog</groupId>
+          <artifactId>tinysound</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -55,6 +61,13 @@
     <artifactId>javafx-fxml</artifactId>
     <version>21.0.2</version>
   </dependency>
+
+  <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-media</artifactId>
+    <version>21.0.2</version>
+  </dependency>
+
   </dependencies>
 
   <build>
@@ -96,6 +109,7 @@
           <modulePathDependencies>
             <modulePathDependency>org.openjfx:javafx-controls</modulePathDependency>
             <modulePathDependency>org.openjfx:javafx-fxml</modulePathDependency>
+            <modulePathDependency>org.openjfx:javafx-media</modulePathDependency>
           </modulePathDependencies>
         </configuration>
       </plugin>

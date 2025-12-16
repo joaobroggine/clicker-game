@@ -1,5 +1,6 @@
 package br.com.git.clicker_game.view;
 
+import br.com.git.clicker_game.core.GameManager;
 import br.com.git.clicker_game.model.Count;
 import br.com.git.clicker_game.model.Inventory;
 import javafx.application.Application;
@@ -13,64 +14,47 @@ import javafx.stage.Stage;
 
 public class Interface extends Application {
 
-    Count count = new Count();
-    Inventory inventory = new Inventory(count);
+    private Count count = new Count();
+    private Inventory inventory = new Inventory(count);
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
+
+        GameManager.setMainStage(stage);
+
+        Scene mainScene = createScene();
+        stage.setScene(mainScene);
+        stage.setTitle("Job Clicker");
+        stage.setResizable(false);
+        stage.show();
+
+    }
+
+    public Scene createScene() {
 
         // Labels
-
         Label label = new Label("Job Clicker");
         label.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-weight: bold;");
-        
+
         Label moneyLabel = new Label();
         moneyLabel.textProperty().bind(count.countProperty().asString("Money: %d"));
         moneyLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #666;");
 
-        // End of labels
-
         // Buttons
-
         Button farmButton = new Button("Get Money");
-        farmButton.setStyle("-fx-font-size: 12px;");
-        farmButton.setOnAction(e -> {
-            try {
-                count.increment();
-            } catch (Exception error) {
-                error.printStackTrace();
-            }
-        });
+        farmButton.setOnAction(e -> count.increment());
 
         Button shopButton = new Button("Shop");
-        shopButton.setStyle("-fx-font-size: 12px;");
         shopButton.setOnAction(e -> {
-            try {
-                new Menu(inventory).start(new Stage());
-            } catch (Exception error) {
-                error.printStackTrace();
-            }
+            Menu menu = new Menu(inventory);
+            menu.show();
         });
 
-        // End of buttons
-
-        VBox box = new VBox(15);
-        box.getChildren().addAll(label, moneyLabel, farmButton, shopButton);
+        // Layout
+        VBox box = new VBox(15, label, moneyLabel, farmButton, shopButton);
         box.setAlignment(Pos.CENTER);
         box.setPadding(new Insets(20));
 
-        Scene scene = new Scene(box, 400, 300);
-
-        stage.setOnCloseRequest(e -> {
-            System.exit(0);
-        });
-
-        stage.setResizable(false);
-        stage.setFullScreen(false);
-        stage.setMaximized(false);
-        stage.setTitle("Job Clicker");
-        stage.setScene(scene);
-        stage.show();
+        return new Scene(box, 400, 300);
     }
-
 }
