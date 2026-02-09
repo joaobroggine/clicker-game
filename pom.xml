@@ -60,6 +60,11 @@
     <artifactId>javafx-media</artifactId>
     <version>21.0.2</version>
   </dependency>
+  <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-swing</artifactId>
+    <version>21.0.2</version>
+  </dependency>
 
   </dependencies>
 
@@ -102,6 +107,7 @@
           <modulePathDependencies>
             <modulePathDependency>org.openjfx:javafx-controls</modulePathDependency>
             <modulePathDependency>org.openjfx:javafx-fxml</modulePathDependency>
+            <modulePathDependency>org.openjfx:javafx-swing</modulePathDependency>
             <modulePathDependency>org.openjfx:javafx-media</modulePathDependency>
           </modulePathDependencies>
         </configuration>

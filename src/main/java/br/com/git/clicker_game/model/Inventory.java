@@ -102,18 +102,12 @@ public class Inventory {
 
     public void buyHouse() {
         int housePrice = 1000;
-
-        if (house > 0) {
-            DialogUtils.showWarning("Warning", "You already have a house!");
-            return;
+        if (count.getCount() >= housePrice) {
+            house++;
+            DialogUtils.showInfo("Congratulations", "Congratulations, your house doesn’t make money by itself, but it opens the door to new opportunities!");
+            count.setCount(count.getCount() - housePrice);
         } else {
-            if (count.getCount() >= housePrice) {
-                house++;
-                DialogUtils.showInfo("Congratulations", "Congratulations, your house doesn’t make money by itself, but it opens the door to new opportunities!");
-                count.setCount(count.getCount() - housePrice);
-            } else {
-                DialogUtils.showWarning("Warning", "You don't have enough money to buy a house!");
-            }
+            DialogUtils.showWarning("Warning", "You don't have enough money to buy a house!");
         }
     }
 
@@ -125,19 +119,13 @@ public class Inventory {
 
     public void buyPc() {
         int pcPrice = 5000;
-
-        if (pc > 0) {
-            DialogUtils.showWarning("Warning", "You already have a PC!");
-            return;
+        if (count.getCount() >= pcPrice) {
+            pc++;
+            DialogUtils.showInfo("Congratulations", "Congratulations, your PC is making money for you while you sleep!");
+            count.setCount(count.getCount() - pcPrice);
+            startPcIncome();
         } else {
-            if (count.getCount() >= pcPrice) {
-                pc++;
-                DialogUtils.showInfo("Congratulations", "Congratulations, the real game begins now!");
-                count.setCount(count.getCount() - pcPrice);
-                startPcIncome();
-            } else {
-                DialogUtils.showWarning("Warning", "You don't have enough money to buy a PC!");
-            }
+            DialogUtils.showWarning("Warning", "You don't have enough money to buy a PC!");
         }
     }
 

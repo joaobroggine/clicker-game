@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Count {
     
-    private IntegerProperty count = new SimpleIntegerProperty(6000);
+    private IntegerProperty count = new SimpleIntegerProperty(11000);
 
     public int getCount() {
         return count.get();

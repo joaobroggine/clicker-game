@@ -27,6 +27,10 @@ public class Interface extends Application {
         stage.setTitle("Job Clicker");
         stage.setResizable(false);
         stage.show();
+        
+        stage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
 
     }
 
@@ -46,7 +50,7 @@ public class Interface extends Application {
 
         Button shopButton = new Button("Shop");
         shopButton.setOnAction(e -> {
-            Menu menu = new Menu(inventory);
+            Menu menu = new Menu(inventory, count);
             menu.show();
         });
 

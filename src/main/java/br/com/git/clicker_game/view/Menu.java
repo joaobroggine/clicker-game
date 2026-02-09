@@ -1,8 +1,8 @@
 package br.com.git.clicker_game.view;
 
 import br.com.git.clicker_game.core.GameManager;
+import br.com.git.clicker_game.model.Count;
 import br.com.git.clicker_game.model.Inventory;
-import br.com.git.clicker_game.view.maingame.MainScreen;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,10 +14,12 @@ import javafx.stage.Stage;
 public class Menu {
 
     private final Inventory inventory;
+    private final Count count;
     private Stage stage;
 
-    public Menu(Inventory inventory) {
+    public Menu(Inventory inventory, Count count) {
         this.inventory = inventory;
+        this.count = count;
     }
 
     public void show() {
@@ -35,7 +37,7 @@ public class Menu {
 
         // Grid
         GridPane grid = new GridPane();
-        grid.setHgap(10);
+        grid.setHgap(110);
         grid.setVgap(10);
 
         // Buttons
@@ -45,13 +47,19 @@ public class Menu {
         Button guitarButton = new Button("Buy a Guitar - 150 Bucks");
         guitarButton.setOnAction(e -> inventory.buyGuitar());
 
+        Button betButton = new Button("Bet");
+        // betButton.setVisible(false);
+        betButton.setOnAction(e -> {
+            Bet bet = new Bet(count);
+            bet.show();
+        });
+
         Button pcButton = new Button("Buy a PC - 5000 Bucks");
         pcButton.setVisible(false);
         pcButton.setOnAction(e -> {
             inventory.buyPc();
             if (inventory.hasPc()) {
-                GameManager.closeShopScreen();
-                GameManager.changeScene(new MainScreen().createScene());
+                betButton.setVisible(true);
             }
         });
 
@@ -68,6 +76,7 @@ public class Menu {
         grid.add(guitarButton, 0, 1);
         grid.add(houseButton, 0, 2);
         grid.add(pcButton, 0, 3);
+        grid.add(betButton, 1, 0);
 
         // Root
         BorderPane root = new BorderPane();

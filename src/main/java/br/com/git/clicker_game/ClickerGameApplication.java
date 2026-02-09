@@ -19,7 +19,6 @@ public class ClickerGameApplication {
 			SpringContext.setApplicationContext(ctx);
 		}, "spring-boot").start();
 
-
 		Interface.launch(Interface.class, args);
 	}
 
