@@ -63,9 +63,7 @@ public class Bet {
                     if (betAmount > 0 && betAmount <= count.getCount()) {
                         boolean win = Math.random() < 0.30; // 30% chance to win
                         if (win) {
-                            for (int i = 0; i < betAmount * 2; i++) {
-                                count.increment();
-                            }
+                            count.setCount(count.getCount() + (betAmount * 2));
                             SoundManager.playSfx("/assets/sounds/sfx/cashmoney.wav", false);
                             javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.millis(500));
                             pause.setOnFinished(e2 -> {
@@ -73,9 +71,7 @@ public class Bet {
                             });
                             pause.play();
                         } else {
-                            for (int i = 0; i < betAmount; i++) {
-                                count.decrement();
-                            }
+                            count.setCount(count.getCount() - betAmount);
                             infoLabel.setText("Sorry, you lost " + betAmount + ". Try again!");
                         }
                     } else {

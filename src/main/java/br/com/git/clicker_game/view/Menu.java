@@ -63,6 +63,11 @@ public class Menu {
             }
         });
 
+        Button ecommerceButton = new Button("E-commerce - 10000 Bucks");
+        ecommerceButton.setVisible(false);
+        ecommerceButton.setOnAction(e -> {
+            inventory.buyEcommerce();
+        });
 
         Button pcButton = new Button("Buy a PC - 5000 Bucks");
         pcButton.setVisible(false);
@@ -71,6 +76,7 @@ public class Menu {
             if (inventory.hasPc()) {
                 betButton.setVisible(true);
                 fasterButton.setVisible(true);
+                ecommerceButton.setVisible(true);
             }
         });
 
@@ -87,6 +93,7 @@ public class Menu {
         grid.add(guitarButton, 0, 1);
         grid.add(houseButton, 0, 2);
         grid.add(pcButton, 0, 3);
+        grid.add(ecommerceButton, 0, 4);
         grid.add(betButton, 1, 0);
         grid.add(fasterButton, 1, 1);
 

@@ -66,7 +66,7 @@ public class Inventory {
         int guitarPrice = 150;
         if (count.getCount() >= guitarPrice) {
             guitar++;
-            DialogUtils.showInfo("Congratulations", "Now, you're playing Linkin Park songs to earn money!");
+            DialogUtils.showInfo("Congratulations", "Now, you're playing Set It On songs to earn money!");
             count.setCount(count.getCount() - guitarPrice);
             startGuitarIncome();
         } else {
@@ -174,6 +174,36 @@ public class Inventory {
 
     public boolean hasFasterClick() {
         return fasterClick > 0;
+    }
+
+    // E-commerce
+
+    public void buyEcommerce() {
+        int ecommercePrice = 100000;
+        if (count.getCount() >= ecommercePrice) {
+            DialogUtils.showInfo("Congratulations", "Congratulations, you opened an small e-commerce");
+            count.setCount(count.getCount() - ecommercePrice);
+            startEcommerceIncome();
+        } else {
+            DialogUtils.showWarning("Warning", "You don't have enough money to buy an e-commerce!");
+        }
+    }
+
+    private void startEcommerceIncome() {
+        new Thread(() -> {
+            while (true) {
+                if (hasHouse()) {
+                    Platform.runLater(() -> {
+                        count.setCount(count.getCount() + 200);
+                    });
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }
