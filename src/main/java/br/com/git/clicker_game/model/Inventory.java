@@ -9,6 +9,8 @@ public class Inventory {
     private int guitar = 0;
     private int house = 0;
     private int pc = 0;
+    private int ecommerce = 0;
+    private int church = 0;
     private int fasterClick = 0;
     private Count count;
     private boolean incomeHatThreadStarted = false;
@@ -44,7 +46,7 @@ public class Inventory {
 
         new Thread(() -> {
             while (true) {
-                if (hat > 0) {
+                if (hasHat()) {
                     Platform.runLater(() -> {
                         for (int i = 0; i < hat; i++) {
                             count.increment();
@@ -58,6 +60,10 @@ public class Inventory {
                 }
             }
         }).start();
+    }
+
+    public boolean hasHat() {
+        return hat > 0;
     }
 
     // Guitar
@@ -83,7 +89,7 @@ public class Inventory {
 
         new Thread(() -> {
             while (true) {
-                if (guitar > 0) {
+                if (hasGuitar()) {
                     Platform.runLater(() -> {
                         for (int i = 0; i < guitar; i++) {
                             count.setCount(count.getCount() + 5);
@@ -97,6 +103,10 @@ public class Inventory {
                 }
             }
         }).start();
+    }
+
+    public boolean hasGuitar() {
+        return guitar > 0;
     }
 
     // House
@@ -139,7 +149,7 @@ public class Inventory {
 
         new Thread(() -> {
             while (true) {
-                if (pc > 0) {
+                if (hasPc()) {
                     Platform.runLater(() -> {
                         for (int i = 0; i < pc; i++) {
                             count.setCount(count.getCount() + 100);
@@ -179,8 +189,9 @@ public class Inventory {
     // E-commerce
 
     public void buyEcommerce() {
-        int ecommercePrice = 100000;
+        int ecommercePrice = 10000;
         if (count.getCount() >= ecommercePrice) {
+            ecommerce++;
             DialogUtils.showInfo("Congratulations", "Congratulations, you opened an small e-commerce");
             count.setCount(count.getCount() - ecommercePrice);
             startEcommerceIncome();
@@ -190,11 +201,44 @@ public class Inventory {
     }
 
     private void startEcommerceIncome() {
+    new Thread(() -> {
+        while (true) {
+            if (hasEcommerce()) {
+                Platform.runLater(() -> {
+                    count.setCount(count.getCount() + 500);
+                });
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }).start();
+}
+
+    public boolean hasEcommerce() {
+        return ecommerce > 0;
+    }
+
+    public void buyChurch() {
+        int churchPrice = 50000;
+        if (count.getCount() >= churchPrice) {
+            church++;
+            DialogUtils.showInfo("Congratulations", "Congratulations, you opened a church! Now, the people can donate money to you!");
+            count.setCount(count.getCount() - churchPrice);
+            startChurchIncome();
+        } else {
+            DialogUtils.showWarning("Warning", "You don't have enough money to buy a church!");
+        }
+    }
+
+    private void startChurchIncome() {
         new Thread(() -> {
             while (true) {
-                if (hasHouse()) {
+                if (hasChurch()) {
                     Platform.runLater(() -> {
-                        count.setCount(count.getCount() + 200);
+                        count.setCount(count.getCount() + 1000);
                     });
                 }
                 try {
@@ -205,5 +249,9 @@ public class Inventory {
             }
         }).start();
     }
+
+    public boolean hasChurch() {
+        return church > 0;
+    }    
 
 }

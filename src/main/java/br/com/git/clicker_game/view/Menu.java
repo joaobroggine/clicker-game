@@ -41,10 +41,10 @@ public class Menu {
         grid.setVgap(10);
 
         // Buttons
-        Button hatButton = new Button("Buy a Hat - 10 Bucks");
+        Button hatButton = new Button("Buy a Hat - $10");
         hatButton.setOnAction(e -> inventory.buyHat());
 
-        Button guitarButton = new Button("Buy a Guitar - 150 Bucks");
+        Button guitarButton = new Button("Buy a Guitar - $150");
         guitarButton.setOnAction(e -> inventory.buyGuitar());
 
         Button betButton = new Button("Try your Luck");
@@ -54,7 +54,7 @@ public class Menu {
             bet.show();
         });
 
-        Button fasterButton = new Button("Faster Click - 5000 Bucks");
+        Button fasterButton = new Button("Faster Click - $5000");
         fasterButton.setVisible(false);
         fasterButton.setOnAction(e -> {
             inventory.buyFasterClick();
@@ -63,13 +63,22 @@ public class Menu {
             }
         });
 
-        Button ecommerceButton = new Button("E-commerce - 10000 Bucks");
+        Button churchButton = new Button("Build a Church - $50000");
+        churchButton.setVisible(false);
+        churchButton.setOnAction(e -> {
+            inventory.buyChurch();
+        });
+
+        Button ecommerceButton = new Button("E-commerce - $10000");
         ecommerceButton.setVisible(false);
         ecommerceButton.setOnAction(e -> {
             inventory.buyEcommerce();
+            if (inventory.hasEcommerce()) {
+                churchButton.setVisible(true);
+            }
         });
 
-        Button pcButton = new Button("Buy a PC - 5000 Bucks");
+        Button pcButton = new Button("Buy a PC - $5000");
         pcButton.setVisible(false);
         pcButton.setOnAction(e -> {
             inventory.buyPc();
@@ -80,7 +89,7 @@ public class Menu {
             }
         });
 
-        Button houseButton = new Button("Buy a House - 1000 Bucks");
+        Button houseButton = new Button("Buy a House - $1000");
         houseButton.setOnAction(e -> {
             inventory.buyHouse();
             if (inventory.hasHouse()) {
@@ -94,6 +103,7 @@ public class Menu {
         grid.add(houseButton, 0, 2);
         grid.add(pcButton, 0, 3);
         grid.add(ecommerceButton, 0, 4);
+        grid.add(churchButton, 0, 5);
         grid.add(betButton, 1, 0);
         grid.add(fasterButton, 1, 1);
 
