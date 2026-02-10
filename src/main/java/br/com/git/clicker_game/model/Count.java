@@ -8,6 +8,11 @@ import lombok.Data;
 public class Count {
     
     private IntegerProperty count = new SimpleIntegerProperty(11000);
+    private Inventory inventory;
+
+    public Count() {
+        this.inventory = inventory;
+    }
 
     public int getCount() {
         return count.get();
@@ -21,12 +26,20 @@ public class Count {
         return count;
     }
 
-    public void increment() {
-        count.set(count.get() + 1);
+    public int increment() {
+        if (inventory.hasFasterClick()) {
+            count.set(count.get() + 100);
+            return count.get();
+        }
+        else {
+            count.set(count.get() + 1);
+            return count.get();
+        }
     }
 
-    public void decrement() {
+    public int decrement() {
         count.set(count.get() - 1);
+        return count.get();
     }
 
 

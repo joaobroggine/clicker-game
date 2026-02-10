@@ -20,6 +20,8 @@ public class Interface extends Application {
     @Override
     public void start(Stage stage) {
 
+        count.setInventory(inventory);
+
         GameManager.setMainStage(stage);
 
         Scene mainScene = createScene();

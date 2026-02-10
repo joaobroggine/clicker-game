@@ -37,7 +37,7 @@ public class Menu {
 
         // Grid
         GridPane grid = new GridPane();
-        grid.setHgap(110);
+        grid.setHgap(50);
         grid.setVgap(10);
 
         // Buttons
@@ -47,12 +47,22 @@ public class Menu {
         Button guitarButton = new Button("Buy a Guitar - 150 Bucks");
         guitarButton.setOnAction(e -> inventory.buyGuitar());
 
-        Button betButton = new Button("Bet");
-        // betButton.setVisible(false);
+        Button betButton = new Button("Try your Luck");
+        betButton.setVisible(false);
         betButton.setOnAction(e -> {
             Bet bet = new Bet(count);
             bet.show();
         });
+
+        Button fasterButton = new Button("Faster Click - 5000 Bucks");
+        fasterButton.setVisible(false);
+        fasterButton.setOnAction(e -> {
+            inventory.buyFasterClick();
+            if (inventory.hasFasterClick()) {
+                fasterButton.setVisible(false);
+            }
+        });
+
 
         Button pcButton = new Button("Buy a PC - 5000 Bucks");
         pcButton.setVisible(false);
@@ -60,6 +70,7 @@ public class Menu {
             inventory.buyPc();
             if (inventory.hasPc()) {
                 betButton.setVisible(true);
+                fasterButton.setVisible(true);
             }
         });
 
@@ -77,6 +88,7 @@ public class Menu {
         grid.add(houseButton, 0, 2);
         grid.add(pcButton, 0, 3);
         grid.add(betButton, 1, 0);
+        grid.add(fasterButton, 1, 1);
 
         // Root
         BorderPane root = new BorderPane();

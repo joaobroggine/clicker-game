@@ -9,6 +9,7 @@ public class Inventory {
     private int guitar = 0;
     private int house = 0;
     private int pc = 0;
+    private int fasterClick = 0;
     private Count count;
     private boolean incomeHatThreadStarted = false;
     private boolean incomeGuitarThreadStarted = false;
@@ -156,6 +157,23 @@ public class Inventory {
 
     public boolean hasPc() {
         return pc > 0;
+    }
+
+    // Faster Click
+
+    public void buyFasterClick() {
+        int fasterClickPrice = 5000;
+        if (count.getCount() >= fasterClickPrice) {
+            fasterClick++;
+            DialogUtils.showInfo("Congratulations", "Congratulations, your clicks gains 100x more money!");
+            count.setCount(count.getCount() - fasterClickPrice);
+        } else {
+            DialogUtils.showWarning("Warning", "You don't have enough money to buy a faster click!");
+        }
+    }
+
+    public boolean hasFasterClick() {
+        return fasterClick > 0;
     }
 
 }
