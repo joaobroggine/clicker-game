@@ -225,7 +225,7 @@ public class Inventory {
         int churchPrice = 50000;
         if (count.getCount() >= churchPrice) {
             church++;
-            DialogUtils.showInfo("Congratulations", "Congratulations, you opened a church! Now, the people can donate money to you!");
+            DialogUtils.showInfo("Congratulations", "Congratulations, a church has been built, and now donations can be received from the faithful! You made your own religion.");
             count.setCount(count.getCount() - churchPrice);
             startChurchIncome();
         } else {

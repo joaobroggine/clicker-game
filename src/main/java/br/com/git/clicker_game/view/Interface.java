@@ -56,8 +56,14 @@ public class Interface extends Application {
             menu.show();
         });
 
+        Button achievementButton = new Button("Achievements");
+        achievementButton.setOnAction(e -> {
+            AchievementScreen achievement = new AchievementScreen(GameManager.getAchievementManager());
+            achievement.show();
+        });
+
         // Layout
-        VBox box = new VBox(15, label, moneyLabel, farmButton, shopButton);
+        VBox box = new VBox(10, label, moneyLabel, farmButton, achievementButton, shopButton);
         box.setAlignment(Pos.CENTER);
         box.setPadding(new Insets(20));
 

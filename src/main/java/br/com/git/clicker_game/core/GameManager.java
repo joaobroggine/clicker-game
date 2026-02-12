@@ -7,6 +7,7 @@ public class GameManager {
     private static Stage mainStage;
     private static Stage shopStage;
     private static Stage betStage;
+    private static Stage achievementStage;
 
     public static void setMainStage(Stage stage) {
         mainStage = stage;
@@ -18,6 +19,10 @@ public class GameManager {
 
     public static void setBetScreen(Stage stage) {
         betStage = stage;
+    }
+
+    public static void setAchievementScreen(Stage stage) {
+        achievementStage = stage;
     }
 
     public static void closeShopScreen() {
@@ -34,6 +39,13 @@ public class GameManager {
         }
     }
 
+    public static void closeAchievementScreen() {
+        if (achievementStage != null) {
+            achievementStage.close();
+            achievementStage = null;
+        }
+    }
+
     public static void exitGame() {
         if (mainStage != null) {
             mainStage.close();
@@ -42,5 +54,9 @@ public class GameManager {
 
     public static Stage getMainStage() {
         return mainStage;
+    }
+
+    public static AchievementManager getAchievementManager() {
+        return new AchievementManager();
     }
 }

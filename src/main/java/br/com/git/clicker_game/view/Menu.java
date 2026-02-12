@@ -54,7 +54,7 @@ public class Menu {
             bet.show();
         });
 
-        Button fasterButton = new Button("Faster Click - $5000");
+        Button fasterButton = new Button("Faster Click - $5.000");
         fasterButton.setVisible(false);
         fasterButton.setOnAction(e -> {
             inventory.buyFasterClick();
@@ -63,13 +63,13 @@ public class Menu {
             }
         });
 
-        Button churchButton = new Button("Build a Church - $50000");
+        Button churchButton = new Button("Build a Church - $50.000");
         churchButton.setVisible(false);
         churchButton.setOnAction(e -> {
             inventory.buyChurch();
         });
 
-        Button ecommerceButton = new Button("E-commerce - $10000");
+        Button ecommerceButton = new Button("E-commerce - $10.000");
         ecommerceButton.setVisible(false);
         ecommerceButton.setOnAction(e -> {
             inventory.buyEcommerce();
@@ -78,7 +78,7 @@ public class Menu {
             }
         });
 
-        Button pcButton = new Button("Buy a PC - $5000");
+        Button pcButton = new Button("Buy a PC - $5.000");
         pcButton.setVisible(false);
         pcButton.setOnAction(e -> {
             inventory.buyPc();
@@ -88,8 +88,8 @@ public class Menu {
                 ecommerceButton.setVisible(true);
             }
         });
-
-        Button houseButton = new Button("Buy a House - $1000");
+        
+        Button houseButton = new Button("Buy a House - $1.000");
         houseButton.setOnAction(e -> {
             inventory.buyHouse();
             if (inventory.hasHouse()) {
