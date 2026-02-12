@@ -8,6 +8,7 @@ public class GameManager {
     private static Stage shopStage;
     private static Stage betStage;
     private static Stage achievementStage;
+    private static AchievementManager achievementManager = new AchievementManager();
 
     public static void setMainStage(Stage stage) {
         mainStage = stage;
@@ -57,6 +58,6 @@ public class GameManager {
     }
 
     public static AchievementManager getAchievementManager() {
-        return new AchievementManager();
+        return achievementManager;
     }
 }

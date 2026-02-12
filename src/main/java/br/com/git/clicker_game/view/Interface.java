@@ -1,5 +1,6 @@
 package br.com.git.clicker_game.view;
 
+import br.com.git.clicker_game.core.AchievementManager;
 import br.com.git.clicker_game.core.GameManager;
 import br.com.git.clicker_game.model.Count;
 import br.com.git.clicker_game.model.Inventory;
@@ -48,7 +49,21 @@ public class Interface extends Application {
 
         // Buttons
         Button farmButton = new Button("Get Money");
-        farmButton.setOnAction(e -> count.increment());
+        farmButton.setOnAction(e -> {
+            count.increment();
+            count.addClicks();
+
+            AchievementManager achievementManager = GameManager.getAchievementManager();
+
+            if (count.getClicks() == 1) {
+                achievementManager.getAchievements().get(0).unlock();
+                System.out.println("Achievement Unlocked: " + achievementManager.getAchievements().get(0).getName());
+            } else if (count.getClicks() == 100) {
+                achievementManager.getAchievements().get(1).unlock();
+            } else if (count.getClicks() == 1000) {
+                achievementManager.getAchievements().get(2).unlock();
+            }
+        });
 
         Button shopButton = new Button("Shop");
         shopButton.setOnAction(e -> {

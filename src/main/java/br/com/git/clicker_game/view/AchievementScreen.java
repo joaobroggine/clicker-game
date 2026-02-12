@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 public class AchievementScreen {
@@ -33,18 +35,24 @@ public class AchievementScreen {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
+        grid.setPadding(new javafx.geometry.Insets(0, 0, 0, 10));
         
         // Label
         Label label = new Label("Achievements");
         label.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-weight: bold;");
         for (var achievement : achievementManager.getAchievements()) {
             Label AchievementsTitle = new Label(achievement.getName());
-            AchievementsTitle.setStyle("-fx-font-size: 18px; -fx-text-fill: #666; -fx-font-weight: bold;");
-            Label AchievementDescription = new Label(achievement.getDescription());
-            AchievementDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: #999;");
+            AchievementsTitle.setStyle("-fx-font-size: 16px; -fx-text-fill: #666; -fx-font-weight: bold;");
             
-            VBox achievementBox = new VBox(5);
-            achievementBox.getChildren().addAll(AchievementsTitle, AchievementDescription);
+            // Textos independentes
+            Text AchievementDescription = new Text(achievement.getDescription() + " | ");
+            AchievementDescription.setStyle("-fx-font-size: 12px; -fx-fill: #999;");
+            Text AchievementStatus = new Text(achievement.isUnlocked() ? "Unlocked" : "Locked");
+            AchievementStatus.setStyle("-fx-font-size: 12px; -fx-fill: " + (achievement.isUnlocked() ? "#4CAF50;" : "#F44336;"));
+            TextFlow flow = new TextFlow(AchievementDescription, AchievementStatus);
+
+            VBox achievementBox = new VBox(2);
+            achievementBox.getChildren().addAll(AchievementsTitle, flow);
 
             // Add to grid
             grid.add(achievementBox, 0, row);

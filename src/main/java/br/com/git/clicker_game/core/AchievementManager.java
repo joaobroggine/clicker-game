@@ -9,8 +9,9 @@ public class AchievementManager {
         javafx.collections.FXCollections.observableArrayList();
 
     public AchievementManager() {
-        achievements.add(new Achievement("Welcome!", "Make your first click"));
-        
+        achievements.add(new Achievement("Welcome", "Make your first click", false));
+        achievements.add(new Achievement("Getting Bigger", "Make 100 clicks", false));
+        achievements.add(new Achievement("Iron Finger", "Make 1000 clicks", false));  
     }
 
     public ObservableList<Achievement> getAchievements() {

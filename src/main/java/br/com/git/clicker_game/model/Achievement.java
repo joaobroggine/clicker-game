@@ -4,12 +4,12 @@ public class Achievement {
     
     private String name;
     private String description;
-    private boolean unlocked;
+    private boolean status;
 
-    public Achievement(String name, String description) {
+    public Achievement(String name, String description, boolean status) {
         this.name = name;
         this.description = description;
-        this.unlocked = false;
+        this.status = status;
     }
 
     public String getName() {
@@ -21,11 +21,11 @@ public class Achievement {
     }
 
     public boolean isUnlocked() {
-        return unlocked;
+        return status;
     }
 
     public void unlock() {
-        this.unlocked = true;
+        this.status = true;
     }
 
 }

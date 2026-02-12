@@ -8,6 +8,7 @@ import lombok.Data;
 public class Count {
     
     private IntegerProperty count = new SimpleIntegerProperty(120000);
+    private IntegerProperty clicks = new SimpleIntegerProperty(0);
     private Inventory inventory;
 
     public Count() {
@@ -18,8 +19,16 @@ public class Count {
         return count.get();
     }
 
+    public int getClicks() {
+        return clicks.get();
+    }
+
     public void setCount(int value) {
         count.set(value);
+    }
+
+    public IntegerProperty clicksProperty() {
+        return clicks;
     }
 
     public IntegerProperty countProperty() {
@@ -42,6 +51,8 @@ public class Count {
         return count.get();
     }
 
-
+    public void addClicks() {
+        clicks.set(clicks.get() + 1);
+    }
 
 }
