@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Count {
     
-    private IntegerProperty count = new SimpleIntegerProperty(120000);
+    private IntegerProperty count = new SimpleIntegerProperty(999999);
     private IntegerProperty clicks = new SimpleIntegerProperty(0);
     private Inventory inventory;
 

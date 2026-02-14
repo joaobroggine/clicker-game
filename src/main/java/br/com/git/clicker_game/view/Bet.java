@@ -1,5 +1,6 @@
 package br.com.git.clicker_game.view;
 
+import br.com.git.clicker_game.core.AchievementManager;
 import br.com.git.clicker_game.core.GameManager;
 import br.com.git.clicker_game.core.SoundManager;
 import br.com.git.clicker_game.model.Count;
@@ -16,6 +17,8 @@ public class Bet {
     
         private final Count count;
         private Stage stage;
+
+        int winStreak = 0;
 
         public Bet(Count count) {
             this.count = count;
@@ -58,6 +61,7 @@ public class Bet {
             Button betButton = new Button("Place Bet");
             betButton.setOnAction(e -> {
                 String betText = betField.getText();
+                AchievementManager achievementManager = GameManager.getAchievementManager();
                 if (!betText.isEmpty()) {
                     int betAmount = Integer.parseInt(betText);
                     if (betAmount > 0 && betAmount <= count.getCount()) {
@@ -65,6 +69,14 @@ public class Bet {
                         if (win) {
                             count.setCount(count.getCount() + (betAmount * 2));
                             SoundManager.playSfx("/assets/sounds/sfx/cashmoney.wav", false);
+                            if (!achievementManager.getAchievements().get(7).isUnlocked()) {
+                                achievementManager.getAchievements().get(7).unlock(); // Unlock "Jackpot" achievement
+                            }
+                            winStreak++;
+                            System.out.println("Win Streak: " + winStreak);
+                            if (winStreak == 7 && !achievementManager.getAchievements().get(8).isUnlocked()) {
+                                achievementManager.getAchievements().get(8).unlock(); // Unlock "Jackpot for You" achievement
+                            }
                             javafx.animation.PauseTransition pause = new javafx.animation.PauseTransition(javafx.util.Duration.millis(500));
                             pause.setOnFinished(e2 -> {
                                 infoLabel.setText("Congratulations! You won " + betAmount * 2 + "!");
@@ -72,6 +84,8 @@ public class Bet {
                             pause.play();
                         } else {
                             count.setCount(count.getCount() - betAmount);
+                            winStreak = 0;
+                            System.out.println("Win Streak Lost: " + winStreak);
                             infoLabel.setText("Sorry, you lost " + betAmount + ". Try again!");
                         }
                     } else {

@@ -55,13 +55,22 @@ public class Interface extends Application {
 
             AchievementManager achievementManager = GameManager.getAchievementManager();
 
-            if (count.getClicks() == 1) {
+            if (count.getClicks() == 1 && !achievementManager.getAchievements().get(0).isUnlocked()) {
                 achievementManager.getAchievements().get(0).unlock();
-                System.out.println("Achievement Unlocked: " + achievementManager.getAchievements().get(0).getName());
-            } else if (count.getClicks() == 100) {
+            } else if (count.getClicks() == 100 && !achievementManager.getAchievements().get(1).isUnlocked()) {
                 achievementManager.getAchievements().get(1).unlock();
-            } else if (count.getClicks() == 1000) {
+            } else if (count.getClicks() == 1000 && !achievementManager.getAchievements().get(2).isUnlocked()) {
                 achievementManager.getAchievements().get(2).unlock();
+            }
+
+            if (count.getCount() >= 1000 && !achievementManager.getAchievements().get(3).isUnlocked()) {
+                achievementManager.getAchievements().get(3).unlock();
+            } else if (count.getCount() >= 100000 && !achievementManager.getAchievements().get(4).isUnlocked()) {
+                achievementManager.getAchievements().get(4).unlock();
+            } else if (count.getCount() >= 1000000 && !achievementManager.getAchievements().get(5).isUnlocked()) {
+                achievementManager.getAchievements().get(5).unlock();
+            } else if (count.getCount() >= 1000000000 && !achievementManager.getAchievements().get(6).isUnlocked()) {
+                achievementManager.getAchievements().get(6).unlock();
             }
         });
 

@@ -5,6 +5,7 @@ import br.com.git.clicker_game.core.GameManager;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -59,13 +60,17 @@ public class AchievementScreen {
             row++;
         }
 
-
+        // ScrollPane
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(grid);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPannable(true);
 
         // Root
         BorderPane root = new BorderPane();
         root.setTop(label);
         BorderPane.setAlignment(label, Pos.CENTER);
-        root.setCenter(grid);
+        root.setCenter(scrollPane);
 
         stage.setScene(new Scene(root, 400, 300));
         stage.show();
